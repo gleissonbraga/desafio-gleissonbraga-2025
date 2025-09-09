@@ -48,8 +48,7 @@ class AbrigoAnimais {
     )
 
     let listResultado = []
-    let listabrinquedosResultado = []
-
+    
     try {
       if (invalidos.length > 0 || animaisDuplicados.length > 0) {
         throw new Error("Animal inválido")
@@ -91,6 +90,19 @@ class AbrigoAnimais {
                 console.log(listAnimais[i].brinquedos)
                 listResultado.push(`${listAnimais[i].nome} - pessoa 2`)
               } 
+              else if(listAnimais[i].nome == "Loco" && listResultado.join(",").includes("pessoa"))
+              {
+                let jaTemPessoa1 = listResultado.join(",").includes(`pessoa 1`)
+                let jaTemPessoa2 = listResultado.join(",").includes(`pessoa 2`)
+                if(jaTemPessoa1)
+                {
+                  listResultado.push(`${animais[j]} - pessoa 1`)
+                }
+                if(jaTemPessoa2)
+                {
+                  listResultado.push(`${animais[j]} - pessoa 2`)
+                }
+              }
               else 
               {
                 listResultado.push(`${listAnimais[i].nome} - abrigo`)
@@ -105,9 +117,6 @@ class AbrigoAnimais {
     }
   }
 }
-
-new AbrigoAnimais().encontraPessoas(
-      'RATO,BOLA', 'RATO,NOVELO', 'Rex,Fofo');
 
 export { AbrigoAnimais as AbrigoAnimais };
 
